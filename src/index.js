@@ -50,7 +50,14 @@ const styles = StyleSheet.create({
   heading: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 20
+    padding: 10,
+    paddingBottom: 20,
+    paddingTop: 20
+  },
+  headingText: {
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: '#454545'
   },
   week: {
     flexDirection: 'row'
@@ -59,6 +66,9 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexBasis: 1,
     textAlign: 'center',
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: '#454545'
   },
   day: {
     flexGrow: 1,
@@ -72,10 +82,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(255, 255, 255)'
   },
   daySelected: {
-    backgroundColor: 'rgb(52,120,246)'
+    backgroundColor: '#EC6952'
   },
   dayText: {
-    color: 'rgb(0, 0, 0)'
+    color: '#454545'
   },
   dayDisabledText: {
     color: 'gray'
@@ -199,7 +209,7 @@ export const Month = (props: MonthType) => {
   weekRange.by('days', (day: moment) => {
     dayNames.push(
       <Text key={day.date()} style={styles.dayName}>
-        {day.format('ddd')}
+        {day.format('ddd').toUpperCase()}
       </Text>
     );
   });
@@ -252,11 +262,11 @@ export default class Dates extends Component {
       <View style={styles.calendar}>
         <View style={styles.heading}>
           <TouchableOpacity onPress={previousMonth}>
-            <Text>{'< Previous'}</Text>
+            <Text style={styles.headingText}>{'< PREV'}</Text>
           </TouchableOpacity>
-          <Text>{this.state.focusedMonth.format('MMMM')}</Text>
+          <Text style={styles.headingText}>{this.state.focusedMonth.format('MMMM YYYY').toUpperCase()}</Text>
           <TouchableOpacity onPress={nextMonth}>
-            <Text>{'Next >'}</Text>
+            <Text style={styles.headingText}>{'NEXT >'}</Text>
           </TouchableOpacity>
         </View>
         <Month
